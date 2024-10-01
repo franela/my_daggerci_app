@@ -1,0 +1,12 @@
+{
+  "name": "my_daggerci_app",
+  "sdk": "go",
+  "dependencies": [
+    {
+      "name": "gha",
+      "source": "github.com/franela/pocketci/modules/gha@903c44a361d4a78d0c053e125c4c5bf7f627aa18"
+    }
+  ],
+  "source": ".dagger",
+  "engineVersion": "v0.13.3"
+}
