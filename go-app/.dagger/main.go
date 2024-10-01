@@ -25,6 +25,7 @@ func (m *MyDaggerciApp) Dispatch(ctx context.Context, eventTrigger *dagger.File)
 	return dag.Gha(eventTrigger).WithPipeline("test").
 		WithRunsOn("dagger-2c").
 		WithOnPullRequest([]dagger.GhaAction{dagger.Opened, dagger.Synchronize}).
+		WithModule("go-app").
 		WithOnChanges([]string{"**"}).
 		Call(ctx, "test")
 }
