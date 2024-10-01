@@ -27,13 +27,12 @@ func (m *MyDaggerciApp) Dispatch(ctx context.Context, eventTrigger *dagger.File)
 	fmt.Println("LALALA")
 	fmt.Println(contents, err)
 
-	g := dag.Gha(eventTrigger).WithPipeline("foo").Call(ctx, "foo")
-	fmt.Println("LELELE", g)
-	//WithRunsOn("dagger-2c").
-	//WithOnPullRequest([]dagger.GhaAction{dagger.Opened, dagger.Synchronize}).
-	//WithModule("go-app").
-	//WithOnChanges([]string{"**"}).
-	//Call(ctx, "test")
+	dag.Gha(eventTrigger).WithPipeline("foo").
+		WithRunsOn("dagger-2c").
+		WithOnPullRequest([]dagger.GhaAction{dagger.Opened, dagger.Synchronize}).
+		WithModule("go-app").
+		WithOnChanges([]string{"**"}).
+		Call(ctx, "test")
 	return nil
 }
 
