@@ -17,11 +17,16 @@ package main
 import (
 	"context"
 	"dagger/my-daggerci-app/internal/dagger"
+	"fmt"
 )
 
 type MyDaggerciApp struct{}
 
 func (m *MyDaggerciApp) Dispatch(ctx context.Context, eventTrigger *dagger.File) error {
+	contents, err := eventTrigger.Contents(ctx)
+	fmt.Println("LALALA")
+	fmt.Println(contents, err)
+
 	return nil
 	//return dag.Gha(eventTrigger).WithPipeline("test").
 	//WithRunsOn("dagger-2c").
