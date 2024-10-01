@@ -3,7 +3,7 @@
   "dependencies": [
     {
       "name": "gha",
-      "source": "github.com/franela/pocketci/modules/gha@d430e53e203e832a591f0d63b4d87a0927adb1cf"
+      "source": "github.com/franela/pocketci/modules/gha@f8bd17567309d368b10bb4acdf8ba4c142741f27"
     },
     {
       "name": "my_daggerci_app",
