@@ -27,7 +27,7 @@ func (m *MyDaggerciApp) Dispatch(ctx context.Context, eventTrigger *dagger.File)
 	fmt.Println("LALALA")
 	fmt.Println(contents, err)
 
-	g := dag.Gha(eventTrigger)
+	g := dag.Gha(eventTrigger).WithPipeline("foo")
 	fmt.Println("LELELE", g)
 	//WithRunsOn("dagger-2c").
 	//WithOnPullRequest([]dagger.GhaAction{dagger.Opened, dagger.Synchronize}).
