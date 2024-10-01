@@ -22,12 +22,13 @@ import (
 type MyDaggerciApp struct{}
 
 func (m *MyDaggerciApp) Dispatch(ctx context.Context, eventTrigger *dagger.File) error {
-	return dag.Gha(eventTrigger).WithPipeline("test").
-		WithRunsOn("dagger-2c").
-		WithOnPullRequest([]dagger.GhaAction{dagger.Opened, dagger.Synchronize}).
-		WithModule("go-app").
-		WithOnChanges([]string{"**"}).
-		Call(ctx, "test")
+	return nil
+	//return dag.Gha(eventTrigger).WithPipeline("test").
+	//WithRunsOn("dagger-2c").
+	//WithOnPullRequest([]dagger.GhaAction{dagger.Opened, dagger.Synchronize}).
+	//WithModule("go-app").
+	//WithOnChanges([]string{"**"}).
+	//Call(ctx, "test")
 }
 
 // Returns a container that echoes whatever string argument is provided
