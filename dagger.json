@@ -2,6 +2,10 @@
   "name": "my_daggerci_app",
   "dependencies": [
     {
+      "name": "gha",
+      "source": "github.com/franela/pocketci/modules/gha@b50f77c1b61bdd68e19e415a16b06df98735a148"
+    },
+    {
       "name": "my_daggerci_app",
       "source": "go-app"
     }
