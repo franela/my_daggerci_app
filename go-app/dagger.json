@@ -4,7 +4,7 @@
   "dependencies": [
     {
       "name": "gha",
-      "source": "github.com/franela/pocketci/modules/gha@85429dca7251f74af7de8ba2228d0dfdab3295b9"
+      "source": "github.com/franela/pocketci/modules/gha@6487ac53f9c69b504d1cc867ec6f5a17c18cb174"
     }
   ],
   "source": ".dagger",
