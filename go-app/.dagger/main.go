@@ -38,7 +38,7 @@ func (m *MyDaggerciApp) Dispatch(ctx context.Context, eventTrigger *dagger.File)
 
 // Returns a container that echoes whatever string argument is provided
 func (m *MyDaggerciApp) Test(ctx context.Context,
-	// +defaultPath="/"
+	// +defaultPath="."
 	src *dagger.Directory,
 ) (string, error) {
 	return dag.Container().From("golang:alpine").WithMountedDirectory("/app", src).
