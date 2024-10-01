@@ -27,13 +27,14 @@ func (m *MyDaggerciApp) Dispatch(ctx context.Context, eventTrigger *dagger.File)
 	fmt.Println("LALALA")
 	fmt.Println(contents, err)
 
-	return nil
-	//return dag.Gha(eventTrigger).WithPipeline("test").
+	g := dag.Gha(eventTrigger)
+	fmt.Println("LELELE", g)
 	//WithRunsOn("dagger-2c").
 	//WithOnPullRequest([]dagger.GhaAction{dagger.Opened, dagger.Synchronize}).
 	//WithModule("go-app").
 	//WithOnChanges([]string{"**"}).
 	//Call(ctx, "test")
+	return nil
 }
 
 // Returns a container that echoes whatever string argument is provided
