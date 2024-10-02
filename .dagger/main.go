@@ -17,17 +17,35 @@ package main
 import (
 	"context"
 	"dagger/my-daggerci-app/internal/dagger"
+
+	"golang.org/x/sync/errgroup"
 )
 
-type GoApp struct{}
+type MyDaggerciApp struct{}
 
-// Returns a container that echoes whatever string argument is provided
-func (m *GoApp) Test(ctx context.Context,
-	// +defaultPath="."
-	src *dagger.Directory,
-) (string, error) {
-	return dag.Container().From("golang:alpine").WithMountedDirectory("/app", src).
-		WithWorkdir("/app").
-		WithExec([]string{"go", "test", "-v", "./..."}).Stdout(ctx)
+// Dagger CI GHA handler
+func (m *MyDaggerciApp) Dispatch(ctx context.Context, eventTrigger *dagger.File) error {
 
+	g := new(errgroup.Group)
+
+	g.Go(func() error {
+		return dag.Gha(eventTrigger).WithPipeline("go-app").
+			WithRunsOn("dagger-2c-amd64").
+			WithOnPullRequest([]dagger.GhaAction{dagger.Opened, dagger.Synchronize}).
+			WithModule("go-app").
+			WithOnChanges([]string{"**"}).
+			Call(ctx, "test")
+	})
+
+	g.Go(func() error {
+		return dag.Gha(eventTrigger).WithPipeline("node-app").
+			WithRunsOn("dagger-2c-arm").
+			WithOnPullRequest([]dagger.GhaAction{dagger.Opened, dagger.Synchronize}).
+			WithModule("node-app").
+			WithOnChanges([]string{"**"}).
+			Call(ctx, "test")
+
+	})
+
+	return g.Wait()
 }

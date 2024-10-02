@@ -1,5 +1,5 @@
 {
-  "name": "my_daggerci_app",
+  "name": "go-app",
   "sdk": "go",
   "dependencies": [
     {
