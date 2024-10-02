@@ -30,7 +30,7 @@ func (m *MyDaggerciApp) Dispatch(ctx context.Context, eventTrigger *dagger.File)
 
 	g.Go(func() error {
 		return dag.Gha(eventTrigger).WithPipeline("go-app").
-			WithRunsOn("dagger-2c-amd64").
+			WithRunsOn("dagger-2c-arm").
 			WithOnPullRequest([]dagger.GhaAction{dagger.Opened, dagger.Synchronize}).
 			WithModule("go-app").
 			WithOnChanges([]string{"**"}).
@@ -39,7 +39,7 @@ func (m *MyDaggerciApp) Dispatch(ctx context.Context, eventTrigger *dagger.File)
 
 	g.Go(func() error {
 		return dag.Gha(eventTrigger).WithPipeline("node-app").
-			WithRunsOn("dagger-2c-arm").
+			WithRunsOn("dagger-2c-amd64").
 			WithOnPullRequest([]dagger.GhaAction{dagger.Opened, dagger.Synchronize}).
 			WithModule("node-app").
 			WithOnChanges([]string{"**"}).
