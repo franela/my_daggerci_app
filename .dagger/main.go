@@ -24,10 +24,13 @@ import (
 type MyDaggerciApp struct{}
 
 // Dagger CI GHA handler
-func (m *MyDaggerciApp) Dispatch(ctx context.Context, eventTrigger *dagger.File) error {
+func (m *MyDaggerciApp) Dispatch(ctx context.Context, eventTrigger *dagger.File,
+	// +optional
+	local bool) error {
+
+	//var gha dagger.Gha
 
 	g := new(errgroup.Group)
-
 	g.Go(func() error {
 		return dag.Gha(eventTrigger).WithPipeline("go-app").
 			WithRunsOn("dagger-2c-amd64").
