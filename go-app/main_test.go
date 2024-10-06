@@ -6,5 +6,5 @@ import (
 )
 
 func TestFoo(t *testing.T) {
-	fmt.Println("WACHINNNNN 📯📯📯")
+	fmt.Println("WACHINNNNNNNNNNNNN 📯📯📯")
 }
